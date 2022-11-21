@@ -1,6 +1,6 @@
 # pharma_says
 
-A new Flutter project.
+This is a CAPSTONE project do not share this
 
 ## Getting Started
 
