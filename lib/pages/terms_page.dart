@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:pharma_says/pages/lookup_page.dart';
 
 enum PrivacyStates { agree, ignore }
 
@@ -173,7 +174,14 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                 ),
                 onPressed: _privacy1 == PrivacyStates.agree &&
                         _privacy == PrivacyStates.ignore
-                    ? () {}
+                    ? () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) => LookupPage(),
+                          ),
+                        );
+                      }
                     : null,
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 40.0),

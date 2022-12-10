@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:pharma_says/pages/splash_screen.dart';
 
 enum ShowPassword { ok, no }
 
@@ -152,7 +152,13 @@ class _LoginPageState extends State<LoginPage> {
                           //border radius equal to or more than 50% of width
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) => SplashScreen(),
+                            ));
+                      },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 25.0,
@@ -177,7 +183,13 @@ class _LoginPageState extends State<LoginPage> {
                           //border radius equal to or more than 50% of width
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) => SplashScreen(),
+                            ));
+                      },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 18.0,

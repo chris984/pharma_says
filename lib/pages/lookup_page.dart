@@ -3,15 +3,13 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:pharma_says/pages/login_page.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pharma_says/pages/speech_to_text.dart';
 
-class LookupPage extends StatefulWidget {
+class LookupPage extends StatelessWidget {
   const LookupPage({super.key});
 
-  @override
-  State<LookupPage> createState() => _LookupPageState();
-}
-
-class _LookupPageState extends State<LookupPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -70,7 +68,130 @@ class _LookupPageState extends State<LookupPage> {
                               //border radius equal to or more than 50% of width
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (_) => new AlertDialog(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(30.0))),
+                                content: Builder(
+                                  builder: (context) {
+                                    // Get available height and width of the build area of this widget. Make a choice depending on the size.
+                                    var height =
+                                        MediaQuery.of(context).size.height;
+                                    var width =
+                                        MediaQuery.of(context).size.width;
+
+                                    return Container(
+                                      padding: EdgeInsets.all(10),
+                                      height: height - 250,
+                                      width: width - 200,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          //Icons and Medicine LookUp text
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Column(
+                                                children: [
+                                                  Icon(
+                                                    Icons.search,
+                                                    size: 50,
+                                                    color: Color.fromARGB(
+                                                        255, 51, 126, 156),
+                                                  ),
+                                                  SizedBox(height: 10),
+                                                  Text(
+                                                    'Medicine LookUp',
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Color.fromARGB(
+                                                            255, 51, 126, 156)),
+                                                  ),
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                          SizedBox(height: 30),
+                                          Row(
+                                            children: [
+                                              Icon(Icons.search),
+                                              SizedBox(width: 5),
+                                              Expanded(
+                                                child: TextField(
+                                                  decoration: InputDecoration(
+                                                    hintText: 'Search',
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          SizedBox(height: 40),
+                                          Row(
+                                            children: [
+                                              Icon(Icons.scanner),
+                                              SizedBox(width: 5),
+                                              TextButton(
+                                                onPressed: () {},
+                                                child: Text(
+                                                  'Image Text Scan',
+                                                  style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    color: Color.fromARGB(
+                                                        255, 51, 126, 156),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          Divider(
+                                              indent: 30,
+                                              height: 1,
+                                              thickness: 1),
+                                          SizedBox(height: 20),
+                                          Row(
+                                            children: [
+                                              Icon(FontAwesomeIcons.microphone),
+                                              SizedBox(width: 5),
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (BuildContext
+                                                                  context) =>
+                                                              SpeechToText()));
+                                                },
+                                                child: Text(
+                                                  'Speech To Text',
+                                                  style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    color: Color.fromARGB(
+                                                        255, 51, 126, 156),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          Divider(
+                                              indent: 30,
+                                              height: 1,
+                                              thickness: 1),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            );
+                          },
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 50.0,
@@ -109,7 +230,13 @@ class _LookupPageState extends State<LookupPage> {
                             //border radius equal to or more than 50% of width
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      LoginPage()));
+                        },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 20.0,
@@ -132,12 +259,13 @@ class _LookupPageState extends State<LookupPage> {
                             TextSpan(
                               text: ' Sign up',
                               style: TextStyle(
-                                fontWeight: FontWeight.bold,
+                                color: Color(0XFFFFFFFF),
                               ),
                             ),
                           ],
                           style: TextStyle(
                             fontSize: 14,
+                            color: Color(0XFFFFFFFF),
                           ),
                         ),
                       ),
