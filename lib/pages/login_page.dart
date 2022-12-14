@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:pharma_says/pages/splash_screen.dart';
 
+import 'signup_page.dart';
+
 enum ShowPassword { ok, no }
 
 class LoginPage extends StatefulWidget {
@@ -279,22 +281,30 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: 10,
                 ),
-                Text.rich(
-                  TextSpan(
-                    text: 'Don\'t have an account?',
-                    children: <InlineSpan>[
-                      TextSpan(
-                        text: ' Sign up',
-                        style: TextStyle(
-                          color: Colors.tealAccent[700],
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                    style: TextStyle(
-                      fontSize: 14,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Don\'t have an account?',
                     ),
-                  ),
+                    SizedBox(
+                      width: 5.0,
+                    ),
+                    TextButton(
+                      child: Text(
+                        'Sign up',
+                        style: TextStyle(
+                            color: Colors.tealAccent[700],
+                            fontWeight: FontWeight.bold),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => SignUp()));
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),

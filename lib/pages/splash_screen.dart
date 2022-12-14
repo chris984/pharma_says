@@ -25,6 +25,7 @@ class _HomePageState extends State<SplashScreen> {
             ));
   }
 
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(

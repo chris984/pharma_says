@@ -5,6 +5,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:pharma_says/pages/login_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pharma_says/pages/signup_page.dart';
 import 'package:pharma_says/pages/speech_to_text.dart';
 
 class LookupPage extends StatelessWidget {
@@ -252,23 +253,33 @@ class LookupPage extends StatelessWidget {
                       SizedBox(
                         height: 20,
                       ),
-                      Text.rich(
-                        TextSpan(
-                          text: 'Don\'t have an account?',
-                          children: <InlineSpan>[
-                            TextSpan(
-                              text: ' Sign up',
-                              style: TextStyle(
-                                color: Color(0XFFFFFFFF),
-                              ),
-                            ),
-                          ],
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Color(0XFFFFFFFF),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Don\'t have an account?',
+                            style: TextStyle(
+                                fontSize: 14, color: Color(0XFFFFFFFF)),
                           ),
-                        ),
-                      ),
+                          SizedBox(
+                            width: 1.0,
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          SignUp()));
+                            },
+                            child: Text(
+                              'Sign up here',
+                              style: TextStyle(
+                                  fontSize: 14, color: Color(0XFFFFFFFF)),
+                            ),
+                          ),
+                        ],
+                      )
                     ],
                   ),
                 ),

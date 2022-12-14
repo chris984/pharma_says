@@ -2,16 +2,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pharma_says/pages/add_message.dart';
 import 'package:pharma_says/pages/alarm.dart';
+import 'package:pharma_says/pages/help.dart';
+import 'package:pharma_says/pages/speech_to_text.dart';
 
-class UserProfile extends StatefulWidget {
+class UserProfile extends StatelessWidget {
   const UserProfile({super.key});
 
-  @override
-  State<UserProfile> createState() => _UserProfileState();
-}
-
-class _UserProfileState extends State<UserProfile> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -69,11 +68,128 @@ class _UserProfileState extends State<UserProfile> {
                         ),
                         TextButton(
                           onPressed: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => const EditProfile()),
-                            // );
+                            showDialog(
+                              context: context,
+                              builder: (_) => new AlertDialog(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(30.0))),
+                                content: Builder(
+                                  builder: (context) {
+                                    // Get available height and width of the build area of this widget. Make a choice depending on the size.
+                                    var height =
+                                        MediaQuery.of(context).size.height;
+                                    var width =
+                                        MediaQuery.of(context).size.width;
+
+                                    return Container(
+                                      padding: EdgeInsets.all(10),
+                                      height: height - 250,
+                                      width: width - 200,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          //Icons and Medicine LookUp text
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Column(
+                                                children: [
+                                                  Container(
+                                                    width: 100,
+                                                    height: 100,
+                                                    decoration: BoxDecoration(
+                                                      image: DecorationImage(
+                                                        image: AssetImage(
+                                                            "assets/images/user1.jpg"),
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              50),
+                                                    ),
+                                                  ),
+
+                                                  // Icon(
+                                                  //   Icons.search,
+                                                  //   size: 50,
+                                                  //   color: Color.fromARGB(
+                                                  //       255, 51, 126, 156),
+                                                  // ),
+                                                  SizedBox(height: 10),
+                                                  Text(
+                                                    'Juan Dela Cruz',
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Color.fromARGB(
+                                                            255, 51, 126, 156)),
+                                                  ),
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                          SizedBox(height: 40),
+                                          Row(
+                                            children: [
+                                              Icon(Icons.person),
+                                              SizedBox(width: 5),
+                                              TextButton(
+                                                onPressed: () {},
+                                                child: Text(
+                                                  'Edit Username',
+                                                  style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    color: Color.fromARGB(
+                                                        255, 51, 126, 156),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          Divider(
+                                              indent: 30,
+                                              height: 1,
+                                              thickness: 1),
+                                          SizedBox(height: 20),
+                                          Row(
+                                            children: [
+                                              Icon(FontAwesomeIcons.lock),
+                                              SizedBox(width: 5),
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (BuildContext
+                                                                  context) =>
+                                                              SpeechToText()));
+                                                },
+                                                child: Text(
+                                                  'Change Password',
+                                                  style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    color: Color.fromARGB(
+                                                        255, 51, 126, 156),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          Divider(
+                                              indent: 30,
+                                              height: 1,
+                                              thickness: 1),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            );
                           },
                           child: Text(
                             'View/Edit Profile >',
@@ -180,7 +296,12 @@ class _UserProfileState extends State<UserProfile> {
                                               ),
                                             ),
                                             onPressed: () {
-                                              debugPrint('Chat');
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (BuildContext
+                                                              context) =>
+                                                          AddMessage()));
                                             },
                                             child: Padding(
                                               padding:
@@ -227,58 +348,160 @@ class _UserProfileState extends State<UserProfile> {
                                           ),
                                         ),
                                         onPressed: () {
-                                          // showDialog(
-                                          //   context: context,
-                                          //   builder: (_) => AlertDialog(
-                                          //     shape: RoundedRectangleBorder(
-                                          //       borderRadius:
-                                          //           BorderRadius.circular(30.0),
-                                          //     ),
-                                          //     // contentPadding:
-                                          //     //     EdgeInsets.symmetric(
-                                          //     //         vertical: 10.0,
-                                          //     //         horizontal: 20.0),
-                                          //     actions: [
-                                          //       Padding(
-                                          //         padding:
-                                          //             const EdgeInsets.only(
-                                          //                 right: 100.0),
-                                          //         child: TextButton(
-                                          //           onPressed: () {},
-                                          //           child: Text(
-                                          //             'Edit Username',
-                                          //             style: TextStyle(
-                                          //               fontWeight:
-                                          //                   FontWeight.normal,
-                                          //               color: Color.fromARGB(
-                                          //                   255, 51, 126, 156),
-                                          //             ),
-                                          //           ),
-                                          //         ),
-                                          //       ),
-                                          //       Divider(),
-                                          //       Padding(
-                                          //         padding:
-                                          //             const EdgeInsets.only(
-                                          //                 right: 100.0),
-                                          //         child: TextButton(
-                                          //           onPressed: () {},
-                                          //           child: Text(
-                                          //             'Change Password',
-                                          //             style: TextStyle(
-                                          //                 fontWeight:
-                                          //                     FontWeight.normal,
-                                          //                 color: Color.fromARGB(
-                                          //                     255,
-                                          //                     51,
-                                          //                     126,
-                                          //                     156)),
-                                          //           ),
-                                          //         ),
-                                          //       ),
-                                          //     ],
-                                          //   ),
-                                          // );
+                                          showDialog(
+                                            context: context,
+                                            builder: (_) => new AlertDialog(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(
+                                                              30.0))),
+                                              content: Builder(
+                                                builder: (context) {
+                                                  // Get available height and width of the build area of this widget. Make a choice depending on the size.
+                                                  var height =
+                                                      MediaQuery.of(context)
+                                                          .size
+                                                          .height;
+                                                  var width =
+                                                      MediaQuery.of(context)
+                                                          .size
+                                                          .width;
+
+                                                  return Container(
+                                                    padding: EdgeInsets.all(10),
+                                                    height: height - 250,
+                                                    width: width - 200,
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        //Icons and Medicine LookUp text
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Column(
+                                                              children: [
+                                                                Icon(
+                                                                  Icons.search,
+                                                                  size: 50,
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          255,
+                                                                          51,
+                                                                          126,
+                                                                          156),
+                                                                ),
+                                                                SizedBox(
+                                                                    height: 10),
+                                                                Text(
+                                                                  'Medicine LookUp',
+                                                                  style: TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          51,
+                                                                          126,
+                                                                          156)),
+                                                                ),
+                                                              ],
+                                                            )
+                                                          ],
+                                                        ),
+                                                        SizedBox(height: 30),
+                                                        Row(
+                                                          children: [
+                                                            Icon(Icons.search),
+                                                            SizedBox(width: 5),
+                                                            Expanded(
+                                                              child: TextField(
+                                                                decoration:
+                                                                    InputDecoration(
+                                                                  hintText:
+                                                                      'Search',
+                                                                ),
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
+                                                        SizedBox(height: 40),
+                                                        Row(
+                                                          children: [
+                                                            Icon(Icons.scanner),
+                                                            SizedBox(width: 5),
+                                                            TextButton(
+                                                              onPressed: () {},
+                                                              child: Text(
+                                                                'Image Text Scan',
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          255,
+                                                                          51,
+                                                                          126,
+                                                                          156),
+                                                                ),
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
+                                                        Divider(
+                                                            indent: 30,
+                                                            height: 1,
+                                                            thickness: 1),
+                                                        SizedBox(height: 20),
+                                                        Row(
+                                                          children: [
+                                                            Icon(FontAwesomeIcons
+                                                                .microphone),
+                                                            SizedBox(width: 5),
+                                                            TextButton(
+                                                              onPressed: () {
+                                                                Navigator.push(
+                                                                    context,
+                                                                    MaterialPageRoute(
+                                                                        builder:
+                                                                            (BuildContext context) =>
+                                                                                SpeechToText()));
+                                                              },
+                                                              child: Text(
+                                                                'Speech To Text',
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          255,
+                                                                          51,
+                                                                          126,
+                                                                          156),
+                                                                ),
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
+                                                        Divider(
+                                                            indent: 30,
+                                                            height: 1,
+                                                            thickness: 1),
+                                                      ],
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                          );
                                         },
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(
@@ -324,7 +547,14 @@ class _UserProfileState extends State<UserProfile> {
                                             //border radius equal to or more than 50% of width
                                           ),
                                         ),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder:
+                                                      (BuildContext context) =>
+                                                          Helppage()));
+                                        },
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(
                                             vertical: 10,

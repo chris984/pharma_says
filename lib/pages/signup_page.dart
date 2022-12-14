@@ -1,8 +1,46 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 
+import 'dart:async';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+import 'profile_page.dart';
+
 enum ShowPassword { ok, no }
+
+//Register chuchu
+
+Future<Register> Signup(String email, String password) async {
+  final response = await http.post(
+    Uri.parse('http://192.168.1.4:8000/api/user/register'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(
+      <String, String>{'email': email, 'password': password},
+    ),
+  );
+
+  if (response.statusCode == 200) {
+    return Register.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to create album.');
+  }
+}
+
+class Register {
+  final String email;
+  final String password;
+
+  const Register({required this.email, required this.password});
+
+  factory Register.fromJson(Map<String, dynamic> json) {
+    return Register(
+      email: json['email'],
+      password: json['password'],
+    );
+  }
+}
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -14,6 +52,11 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   ShowPassword? _showPassword = ShowPassword.ok;
   ShowPassword? _showPassword1 = ShowPassword.no;
+
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+
+  Future<Register>? _futureRegister;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +73,7 @@ class _SignUpState extends State<SignUp> {
                     height: 100,
                     width: 200,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   Text(
@@ -61,6 +104,7 @@ class _SignUpState extends State<SignUp> {
                           left: 20,
                         ),
                         child: TextField(
+                          controller: _email,
                           style: TextStyle(
                             fontSize: 13,
                           ),
@@ -96,6 +140,7 @@ class _SignUpState extends State<SignUp> {
                           left: 20,
                         ),
                         child: TextField(
+                          controller: _password,
                           style: TextStyle(
                             fontSize: 13,
                           ),
@@ -190,7 +235,6 @@ class _SignUpState extends State<SignUp> {
                         //border radius equal to or more than 50% of width
                       ),
                     ),
-                    onPressed: () {},
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 100.0,
@@ -202,6 +246,19 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                     ),
+                    onPressed: () {
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //       builder: (BuildContext context) => UserProfile()),
+                      // );
+
+                      setState(() {
+                        _futureRegister = Signup(_email.text, _password.text);
+                        _email.clear();
+                        _password.clear();
+                      });
+                    },
                   ),
                 ],
               ),
