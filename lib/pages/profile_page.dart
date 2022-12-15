@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pharma_says/pages/add_message.dart';
 import 'package:pharma_says/pages/alarm.dart';
 import 'package:pharma_says/pages/help.dart';
+import 'package:pharma_says/pages/search.dart';
 import 'package:pharma_says/pages/speech_to_text.dart';
 
 class UserProfile extends StatelessWidget {
@@ -418,12 +419,28 @@ class UserProfile extends StatelessWidget {
                                                           children: [
                                                             Icon(Icons.search),
                                                             SizedBox(width: 5),
-                                                            Expanded(
-                                                              child: TextField(
-                                                                decoration:
-                                                                    InputDecoration(
-                                                                  hintText:
-                                                                      'Search',
+                                                            TextButton(
+                                                              onPressed: () {
+                                                                Navigator.push(
+                                                                    context,
+                                                                    MaterialPageRoute(
+                                                                        builder:
+                                                                            (BuildContext context) =>
+                                                                                SearchPage()));
+                                                              },
+                                                              child: Text(
+                                                                'Search',
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          255,
+                                                                          51,
+                                                                          126,
+                                                                          156),
                                                                 ),
                                                               ),
                                                             )
